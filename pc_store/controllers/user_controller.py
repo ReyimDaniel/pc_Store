@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from pc_store.src.models import User
-from pc_store.src.repositories import user_repository
+from pc_store.models import User
+from pc_store.repositories import user_repository
 
 router = APIRouter(
     prefix="/users",

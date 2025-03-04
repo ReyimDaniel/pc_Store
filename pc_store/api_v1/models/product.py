@@ -26,3 +26,8 @@ class ProductUpdatePartial(ProductBase):
 class Product(ProductBase):
     model_config = ConfigDict(from_attributes=True)
     id: int
+
+
+class ProductPriceRange(BaseModel):
+    min_price: int
+    max_price: int

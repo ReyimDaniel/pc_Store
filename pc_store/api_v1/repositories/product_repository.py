@@ -57,7 +57,8 @@ async def get_product_by_name(session: AsyncSession, name: str) -> list[Product]
     return list(products)
 
 
-async def get_products_count(session: AsyncSession):
+async def get_products_count(session: AsyncSession) -> int:
     stmt = select(func.count()).select_from(Product)
     result: Result = await session.execute(stmt)
-    return {"total_result": result.scalar()}
+    products = result.scalar()
+    return products

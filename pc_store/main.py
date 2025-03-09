@@ -8,10 +8,6 @@ from core import db_helper, settings
 from models import Base
 
 
-# from pc_store.src.controllers.product_controller import router as product_router
-# from pc_store.src.controllers.user_controller import router as users_router
-
-
 @asynccontextmanager
 async def lifespan(app: FastAPI):
     async with db_helper.engine.begin() as connection:
@@ -21,12 +17,6 @@ async def lifespan(app: FastAPI):
 
 app = FastAPI(lifespan=lifespan)
 app.include_router(router=router_v1, prefix=settings.api_v1_prefix)
-
-
-# app.include_router(users_router)
-
-
-# app.include_router(product_router)
 
 
 @app.get("/")

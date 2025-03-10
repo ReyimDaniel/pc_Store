@@ -4,7 +4,7 @@ READ
 UPDATE
 DELETE
 """
-from pc_store.src.models import User
+from pc_store.models import User
 
 
 def create_user(user_in: User) -> dict:

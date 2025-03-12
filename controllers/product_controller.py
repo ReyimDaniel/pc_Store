@@ -1,7 +1,7 @@
 from fastapi import APIRouter
 
-from pc_store.models import Product
-from pc_store.repositories import product_repository
+from models import Product
+from repositories import product_repository
 
 router = APIRouter(
     prefix="/products",

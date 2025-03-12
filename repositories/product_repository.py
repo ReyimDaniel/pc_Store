@@ -4,7 +4,7 @@ READ
 UPDATE
 DELETE
 """
-from pc_store.models import Product
+from models import Product
 
 
 def create_product(product_in: Product) -> dict:

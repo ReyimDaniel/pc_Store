@@ -2,10 +2,10 @@ from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from pc_store.api_v1.models.product import ProductCreate, Product, ProductUpdate, ProductUpdatePartial, \
+from api_v1.models.product import ProductCreate, Product, ProductUpdate, ProductUpdatePartial, \
     ProductPriceRange
-from pc_store.api_v1.repositories import product_repository
-from pc_store.core import db_helper
+from api_v1.repositories import product_repository
+from core import db_helper
 from .dependencies import get_product_by_id
 
 router = APIRouter(tags=['products'])

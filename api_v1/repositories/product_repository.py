@@ -4,8 +4,8 @@ from sqlalchemy import select, func
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from pc_store.api_v1.models.product import ProductCreate, ProductUpdate, ProductUpdatePartial, ProductPriceRange
-from pc_store.models.product import Product
+from api_v1.models.product import ProductCreate, ProductUpdate, ProductUpdatePartial, ProductPriceRange
+from models.product import Product
 
 
 async def get_products(session: AsyncSession) -> list[Product]:

@@ -3,9 +3,9 @@ from typing import Annotated
 from fastapi import HTTPException, status, Depends, Path
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from pc_store.api_v1.repositories import product_repository
-from pc_store.core import db_helper
-from pc_store.models.product import Product
+from api_v1.repositories import product_repository
+from core import db_helper
+from models.product import Product
 
 
 async def get_product_by_id(product_id: Annotated[int, Path],

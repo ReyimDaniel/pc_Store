@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="DataSourceManagerImpl" format="xml" multifile-model="true">
-    <data-source source="LOCAL" name="store_pc" uuid="8af92c0c-208b-400f-ac77-8d18dceb163d">
+    <data-source source="LOCAL" name="store_pc" uuid="cf6ca2a2-84f3-401a-a004-d10422542994">
       <driver-ref>sqlite.xerial</driver-ref>
       <synchronize>true</synchronize>
       <jdbc-driver>org.sqlite.JDBC</jdbc-driver>
-      <jdbc-url>jdbc:sqlite:C:\MyPrograms\PyCharm\proj\practice1_pcStore\pc_store\store_pc.db</jdbc-url>
+      <jdbc-url>jdbc:sqlite:C:\MyPrograms\PyCharm\proj\pc_Store\store_pc.db</jdbc-url>
       <working-dir>$ProjectFileDir$</working-dir>
       <libraries>
         <library>

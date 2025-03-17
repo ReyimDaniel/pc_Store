@@ -16,3 +16,10 @@ class User(Base):
     description: Mapped[str]
     posts: Mapped[list["Post"]] = relationship(back_populates="user")
     profile: Mapped["Profile"] = relationship(back_populates="user")
+
+    def __str__(self):
+        return (f"{self.__class__.__name__}(id={self.id}, username={self.username!r}, email={self.email!r}, "
+                f"description={self.description!r})")
+
+    def __repr__(self):
+        return str(self)

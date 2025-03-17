@@ -17,3 +17,9 @@ class Profile(UserRelationMixIn, Base):
 
     # user_id: Mapped[Optional[int]] = mapped_column(ForeignKey('user.id'), unique=True)
     # posts: Mapped[list["Post"]] = relationship(back_populates="user")
+
+    def __str__(self):
+        return self.first_name + self.last_name + self.description
+
+    def __repr__(self):
+        return str(self)

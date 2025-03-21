@@ -91,7 +91,7 @@ async def main():
         print(user_dan)
         # user_alex = await get_user_by_username(session=session, username="Alexey")
         # user_dima = await get_user_by_username(session=session, username="Dimitry")
-        await create_user_profile(session=session, user_id=user_dan.id, first_name="Rey", last_name="Imbot",
+        await create_user_profile(session=session, user_id=user_dan.id, first_name="Jane", last_name="Doe",
                                   description="This is my second account")
         # await create_user_profile(session=session, user_id=user_dima.id, first_name="Shine", last_name="Gen",
         #                           description="Hi, I love computer games")

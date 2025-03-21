@@ -9,7 +9,7 @@ from .mixins import UserRelationMixIn
 
 
 class Profile(UserRelationMixIn, Base):
-    _user_id_unique = True
+    _user_id_unique = False
     _user_back_populates = "profile"
 
     first_name: Mapped[Optional[str]] = mapped_column(String(40))

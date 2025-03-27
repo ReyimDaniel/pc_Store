@@ -1,5 +1,6 @@
 from typing import Optional
 
+from pydantic import ConfigDict
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -8,18 +9,17 @@ from .mixins import UserRelationMixIn
 
 
 class Profile(UserRelationMixIn, Base):
-    _user_id_unique = True
+    _user_id_unique = False
     _user_back_populates = "profile"
 
     first_name: Mapped[Optional[str]] = mapped_column(String(40))
     last_name: Mapped[Optional[str]] = mapped_column(String(40))
     description: Mapped[Optional[str]]
 
-    # user_id: Mapped[Optional[int]] = mapped_column(ForeignKey('user.id'), unique=True)
-    # posts: Mapped[list["Post"]] = relationship(back_populates="user")
-
     def __str__(self):
-        return self.first_name + self.last_name + self.description
+        return (
+            f"{self.__class__.__name__}(id={self.id}, first_name={self.first_name!r}, last_name={self.last_name!r}, "
+            f"description={self.description!r})")
 
     def __repr__(self):
         return str(self)

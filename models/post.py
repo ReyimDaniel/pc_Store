@@ -15,8 +15,6 @@ class Post(UserRelationMixIn, Base):
         server_default=""
     )
 
-    # user_id: Mapped[int] = mapped_column(ForeignKey('users.id'))
-    # user: Mapped["User"] = relationship(back_populates="posts")
     def __str__(self):
         return f"{self.__class__.__name__}(id={self.id}, user={self.user_id}, title={self.title!r}"
 

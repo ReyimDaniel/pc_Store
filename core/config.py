@@ -13,6 +13,7 @@ class DbSettings(BaseModel):
 
 class Settings(BaseSettings):
     api_v1_prefix: str = '/api/v1'
+    alembic_prefix: str = '/alembic'
     db: DbSettings = DbSettings()
 
 

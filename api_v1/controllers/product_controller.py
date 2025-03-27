@@ -1,10 +1,11 @@
-from fastapi import APIRouter, Depends
+from fastapi import APIRouter, Depends, Query
 from sqlalchemy.ext.asyncio import AsyncSession
 from starlette import status
 
-from pc_store.api_v1.models.product import ProductCreate, Product, ProductUpdate, ProductUpdatePartial
-from pc_store.api_v1.repositories import product_repository
-from pc_store.core import db_helper
+from api_v1.models.product import ProductCreate, Product, ProductUpdate, ProductUpdatePartial, \
+    ProductPriceRange
+from api_v1.repositories import product_repository
+from core import db_helper
 from .dependencies import get_product_by_id
 
 router = APIRouter(tags=['products'])
@@ -45,3 +46,20 @@ async def update_product_partial(product_update: ProductUpdatePartial,
 async def delete_product(product: Product = Depends(get_product_by_id),
                          session: AsyncSession = Depends(db_helper.scoped_session_dependency)) -> None:
     return await product_repository.delete_product(session=session, product=product)
+
+
+@router.get("/products/price", response_model=list[Product])
+async def get_products_price_range(price_range: ProductPriceRange = Depends(),
+                                   session: AsyncSession = Depends(db_helper.scoped_session_dependency)):
+    return await product_repository.get_product_range_price(session=session, price_range=price_range)
+
+
+@router.get("/products/by_name", response_model=list[Product])
+async def get_product_by_name(name: str = Query(..., description="Product name"),
+                              session: AsyncSession = Depends(db_helper.scoped_session_dependency)):
+    return await product_repository.get_product_by_name(session=session, name=name)
+
+
+@router.get("/products/count")
+async def get_product_count(session: AsyncSession = Depends(db_helper.scoped_session_dependency)):
+    return await product_repository.get_products_count(session=session)

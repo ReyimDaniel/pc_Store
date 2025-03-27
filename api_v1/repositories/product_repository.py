@@ -1,11 +1,11 @@
 from __future__ import annotations
 
-from sqlalchemy import select
+from sqlalchemy import select, func
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
 
-from pc_store.api_v1.models.product import ProductCreate, ProductUpdate, ProductUpdatePartial
-from pc_store.models.product import Product
+from api_v1.models.product import ProductCreate, ProductUpdate, ProductUpdatePartial, ProductPriceRange
+from models.product import Product
 
 
 async def get_products(session: AsyncSession) -> list[Product]:
@@ -39,3 +39,26 @@ async def update_product(session: AsyncSession, product: Product,
 async def delete_product(session: AsyncSession, product: Product) -> None:
     await session.delete(product)
     await session.commit()
+
+
+async def get_product_range_price(
+        session: AsyncSession,
+        price_range: ProductPriceRange) -> list[Product]:
+    stmt = select(Product).where(Product.price.between(price_range.min_price, price_range.max_price))
+    result: Result = await session.execute(stmt)
+    products = result.scalars().all()
+    return list(products)
+
+
+async def get_product_by_name(session: AsyncSession, name: str) -> list[Product] | None:
+    stmt = select(Product).where(Product.name.ilike(f"%{name}%"))
+    result: Result = await session.execute(stmt)
+    products = result.scalars().all()
+    return list(products)
+
+
+async def get_products_count(session: AsyncSession) -> int:
+    stmt = select(func.count()).select_from(Product)
+    result: Result = await session.execute(stmt)
+    products = result.scalar()
+    return products

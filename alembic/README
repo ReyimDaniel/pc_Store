@@ -1,0 +1,19 @@
+Generic single-database configuration with an async dbapi.
+
+Commands for using Alembic:
+
+Init async Alembic:
+    alembic init -t async PACKAGE_NAME
+
+
+Create auto migration:
+    alembic revision --autogenerate -m "Create products table"
+
+
+Upgrade migration:
+    alembic upgrade head
+
+Downgrade migration:
+    alembic downgrade -1
+
+

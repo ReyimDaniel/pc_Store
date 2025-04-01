@@ -1,6 +1,4 @@
 import asyncio
-from typing import Optional
-
 from sqlalchemy import select
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -17,11 +15,11 @@ async def create_user(session: AsyncSession, username: str, email: str, descript
     return user
 
 
-async def get_user_by_id(session: AsyncSession, user_id: int) -> Optional[User]:
+async def get_user_by_id(session: AsyncSession, user_id: int) -> User | None:
     return await session.get(User, user_id)
 
 
-async def get_user_by_username(session: AsyncSession, username: str) -> Optional[User]:
+async def get_user_by_username(session: AsyncSession, username: str) -> User | None:
     stmt = select(User).where(User.username == username)
     result: Result = await session.execute(stmt)
     user: User = result.scalar_one_or_none()
@@ -102,7 +100,8 @@ async def user_profile_posts_relations(session: AsyncSession):
     # print(await get_profiles_with_user_and_posts(session=session))
     # await get_user_by_id(session=session, user_id=1)
 
-async def create_order(session: AsyncSession, promocode: Optional[str] = None) -> Order:
+
+async def create_order(session: AsyncSession, promocode: str | None = None) -> Order:
     order = Order(promocode=promocode)
     session.add(order)
     await session.commit()

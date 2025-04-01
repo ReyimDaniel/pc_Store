@@ -1,5 +1,5 @@
 from datetime import datetime
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from sqlalchemy import func
 from sqlalchemy.orm import Mapped, mapped_column, relationship
@@ -11,7 +11,7 @@ if TYPE_CHECKING:
 
 
 class Order(Base):
-    promocode: Mapped[Optional[str]]
+    promocode: Mapped[str | None]
     created_at: Mapped[datetime] = mapped_column(
         server_default=func.now(),
         default=datetime.now,

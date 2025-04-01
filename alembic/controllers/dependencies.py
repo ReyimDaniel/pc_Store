@@ -9,7 +9,7 @@ from models.user import User
 
 
 async def get_user_by_id(user_id: Annotated[int, Path],
-                            session: AsyncSession = Depends(db_helper.scoped_session_dependency)) -> User:
+                         session: AsyncSession = Depends(db_helper.scoped_session_dependency)) -> User:
     user = await alembic_repository.get_user_by_id(session=session, user_id=user_id)
     if user is not None:
         return user.id

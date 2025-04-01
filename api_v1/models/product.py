@@ -1,5 +1,3 @@
-from typing import Optional
-
 from pydantic import BaseModel, ConfigDict
 
 
@@ -18,9 +16,9 @@ class ProductUpdate(ProductBase):
 
 
 class ProductUpdatePartial(ProductBase):
-    name: Optional[str] = None
-    price: Optional[int] = None
-    description: Optional[str] = None
+    name: str | None = None
+    price: int | None = None
+    description: str | None = None
 
 
 class Product(ProductBase):

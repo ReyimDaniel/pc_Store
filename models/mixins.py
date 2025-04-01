@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Optional
+from typing import TYPE_CHECKING
 
 from sqlalchemy import ForeignKey
 from sqlalchemy.orm import declared_attr, Mapped, mapped_column, relationship
@@ -9,7 +9,7 @@ if TYPE_CHECKING:
 
 class UserRelationMixIn:
     _user_id_unique: bool = False
-    _user_back_populates: Optional[str] = None
+    _user_back_populates: str | None = None
     _user_id_nullable: bool = False
 
     @declared_attr

@@ -4,9 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from alembic.repositories import alembic_repository
 
 from core import db_helper
-from models.profileResponseBody import ProfileResponse
 from .dependencies import get_user_by_id
-from models import User
 
 router = APIRouter(tags=["alembic"])
 

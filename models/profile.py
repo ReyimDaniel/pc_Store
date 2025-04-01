@@ -1,6 +1,3 @@
-from typing import Optional
-
-from pydantic import ConfigDict
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column
 
@@ -12,9 +9,9 @@ class Profile(UserRelationMixIn, Base):
     _user_id_unique = False
     _user_back_populates = "profile"
 
-    first_name: Mapped[Optional[str]] = mapped_column(String(40))
-    last_name: Mapped[Optional[str]] = mapped_column(String(40))
-    description: Mapped[Optional[str]]
+    first_name: Mapped[str | None] = mapped_column(String(40))
+    last_name: Mapped[str | None] = mapped_column(String(40))
+    description: Mapped[str | None]
 
     def __str__(self):
         return (

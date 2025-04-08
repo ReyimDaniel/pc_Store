@@ -5,6 +5,7 @@ from fastapi import FastAPI
 
 from api_v1 import router as router_v1
 from alembic import router as alembic_router
+from auth.demo_jwt import router as demo_jwt_router
 from core import settings
 
 
@@ -16,6 +17,7 @@ async def lifespan(app: FastAPI):
 app = FastAPI(lifespan=lifespan)
 app.include_router(router=router_v1, prefix=settings.api_v1_prefix)
 app.include_router(router=alembic_router, prefix=settings.alembic_prefix)
+app.include_router(router=demo_jwt_router, prefix='/jwt')
 
 
 @app.get("/")

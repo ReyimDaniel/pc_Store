@@ -1,5 +1,6 @@
 from typing import TYPE_CHECKING
 
+from pydantic import BaseModel, EmailStr, ConfigDict
 from sqlalchemy import String
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
@@ -23,3 +24,12 @@ class User(Base):
 
     def __repr__(self):
         return str(self)
+
+
+class UserSchema(BaseModel):
+    model_config = ConfigDict(strict=True)
+
+    username: str
+    password: bytes
+    email: EmailStr | None = None
+    active: bool = True

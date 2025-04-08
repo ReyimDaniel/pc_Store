@@ -1,5 +1,4 @@
 from __future__ import annotations
-
 from sqlalchemy import select, func
 from sqlalchemy.engine import Result
 from sqlalchemy.ext.asyncio import AsyncSession
@@ -21,13 +20,11 @@ async def get_product_by_id(session: AsyncSession, product_id: int) -> Product |
 
 async def create_product(session: AsyncSession, product_in: ProductCreate) -> Product:
     product = Product(**product_in.model_dump())
-    session.add(product)  # Отслеживание этого объекта
+    session.add(product)
     await session.commit()
-    # await session.refresh(product)
     return product
 
 
-# Put + Patch
 async def update_product(session: AsyncSession, product: Product,
                          product_update: ProductUpdate | ProductUpdatePartial, partial: bool = False, ) -> Product:
     for key, value in product_update.model_dump(exclude_unset=partial).items():

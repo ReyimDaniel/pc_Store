@@ -20,7 +20,7 @@ class OrderProductAssociation(Base):
     unit_price: Mapped[int] = mapped_column(default=0, server_default="0")
 
     # association between Assocation -> Order
-    order: Mapped["Order"] = relationship(back_populates="products")
+    orders: Mapped["Order"] = relationship(back_populates="products")
 
     # association between Assocation -> Product
-    product: Mapped["Product"] = relationship(back_populates="orders")
+    products: Mapped["Product"] = relationship(back_populates="orders")

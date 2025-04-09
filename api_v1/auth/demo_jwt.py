@@ -1,12 +1,10 @@
-import profile
-
 from jwt import InvalidTokenError
 from fastapi import APIRouter, Depends, HTTPException, Form, status
-from fastapi.security import HTTPBearer, HTTPAuthorizationCredentials, OAuth2PasswordBearer
+from fastapi.security import OAuth2PasswordBearer
 
 from models.user import UserSchema
-from auth import service_jwt as auth_service
-from auth.token_model import TokenInfo
+from api_v1.auth import service_jwt as auth_service
+from api_v1.auth.token_model import TokenInfo
 
 router = APIRouter(prefix="/auth", tags=["auth"])
 

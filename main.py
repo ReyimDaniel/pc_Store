@@ -5,7 +5,7 @@ from fastapi import FastAPI
 
 from api_v1 import router as router_v1
 from alembic import router as alembic_router
-from auth.demo_jwt import router as demo_jwt_router
+from api_v1.auth.demo_jwt import router as demo_jwt_router
 from core import settings
 
 
